@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpmakx4xud3a5"]
+
+[ext_resource type="Texture2D" uid="uid://c5xk5ph18c700" path="res://icon.svg" id="1_6nsvm"]
+[ext_resource type="Script" path="res://elements/orb/orb.gd" id="1_r0glg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ycnp"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvb6f"]
+radius = 8.0
+
+[node name="Orb" type="CharacterBody2D" groups=["Orbs"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_r0glg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.124023, 0.124023)
+texture = ExtResource("1_6nsvm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1ycnp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.05, 1.05)
+shape = SubResource("CircleShape2D_xvb6f")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

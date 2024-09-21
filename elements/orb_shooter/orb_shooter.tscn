@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0tm3j5xsxtpy"]
+
+[ext_resource type="Script" path="res://elements/orb_shooter/orb_shooter.gd" id="1_a0ol8"]
+
+[node name="OrbShooter" type="Node2D" groups=["OrbShooter"]]
+script = ExtResource("1_a0ol8")
+
+[node name="Sight" type="RayCast2D" parent="."]
+modulate = Color(0.25098, 0.482353, 0.870588, 1)
+self_modulate = Color(0, 0.580392, 0.580392, 1)
+top_level = true
+exclude_parent = false
+collision_mask = 13
+collide_with_areas = true

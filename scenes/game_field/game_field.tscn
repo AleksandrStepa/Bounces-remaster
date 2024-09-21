@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://dic5l5hnwdhth"]
+
+[ext_resource type="Texture2D" uid="uid://c5xk5ph18c700" path="res://icon.svg" id="1_elv6p"]
+[ext_resource type="PackedScene" uid="uid://d0tm3j5xsxtpy" path="res://elements/orb_shooter/orb_shooter.tscn" id="2_sje6d"]
+[ext_resource type="PackedScene" uid="uid://ct4qur5126764" path="res://elements/block_generator/block_generator.tscn" id="3_qw5mo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ymryf"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1jyuw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mmbtd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qmjfl"]
+
+[node name="GameField" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WallsContainer" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="WallsContainer"]
+position = Vector2(0, 384)
+collision_mask = 0
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsContainer/Floor"]
+shape = SubResource("WorldBoundaryShape2D_ymryf")
+
+[node name="Sprite2D" type="Sprite2D" parent="WallsContainer/Floor"]
+position = Vector2(-3.8147e-06, 76)
+scale = Vector2(5.625, 1.1875)
+texture = ExtResource("1_elv6p")
+
+[node name="Left" type="StaticBody2D" parent="WallsContainer"]
+position = Vector2(-328, 2.08165e-12)
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsContainer/Left"]
+position = Vector2(-1.81899e-12, 0)
+shape = SubResource("WorldBoundaryShape2D_1jyuw")
+debug_color = Color(0.803922, 0.282353, 0.760784, 0.419608)
+
+[node name="Right" type="StaticBody2D" parent="WallsContainer"]
+position = Vector2(328, -2.08165e-12)
+rotation = -1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsContainer/Right"]
+position = Vector2(0, -3.8147e-06)
+shape = SubResource("WorldBoundaryShape2D_mmbtd")
+debug_color = Color(0.501961, 0.580392, 0.145098, 0.419608)
+
+[node name="Top" type="StaticBody2D" parent="WallsContainer"]
+position = Vector2(2.08165e-12, -400)
+rotation = -3.14159
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsContainer/Top"]
+position = Vector2(3.63798e-12, 0)
+shape = SubResource("WorldBoundaryShape2D_qmjfl")
+debug_color = Color(0.0823529, 0.631373, 0.427451, 0.419608)
+
+[node name="OrbShooter" parent="." instance=ExtResource("2_sje6d")]
+position = Vector2(-16, 360)
+
+[node name="BlockGenerator" parent="." instance=ExtResource("3_qw5mo")]

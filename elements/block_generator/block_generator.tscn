@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct4qur5126764"]
+
+[ext_resource type="Script" path="res://elements/block_generator/block_generator.gd" id="1_r3ir4"]
+
+[node name="BlockGenerator" type="Node2D" groups=["BlockGenerator"]]
+script = ExtResource("1_r3ir4")

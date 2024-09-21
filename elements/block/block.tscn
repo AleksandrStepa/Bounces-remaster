@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxnr7sd1iv327"]
+
+[ext_resource type="Script" path="res://elements/block/block.gd" id="1_mk42l"]
+[ext_resource type="Texture2D" uid="uid://c5xk5ph18c700" path="res://icon.svg" id="1_uethg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nyygl"]
+size = Vector2(64, 64)
+
+[sub_resource type="SystemFont" id="SystemFont_x4hbh"]
+font_weight = 600
+font_stretch = 200
+subpixel_positioning = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbaq3"]
+size = Vector2(62, 62)
+
+[node name="Block" type="Area2D" groups=["Blocks"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_mk42l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.854902, 0.756863, 0.996078, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_uethg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nyygl")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.705882, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 8.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_x4hbh")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_fbaq3")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
